@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <section class="intro ">
+
+        <h1>Strong Password Generator</h1>
+        <div class="intro__copy">
+            <h4>
+                Use our online password generator to instantly create a secure, random password.
+            </h4>
+        </div>
+
+    </section>
+
+    <div class="generated-password">
+        <div class="generated-password__form">
+            <form action="">
+                <input type="text" name="" placeholder="Create password" id="password" readonly>
+            </form>
+            <div class="generated-password__btn">
+                <button id="copy-btn" class="btn" onclick="copyPassword()">
+                    <span class="btn-content">
+                        Copy
+                    </span>
+                </button>
+                <button id="gen-btn" class="btn" onclick="genPasswordRefresh()">
+                    <span class="btn-content">
+                        Generate
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="generated-password__strength-wrapper">
+            <div id="color-identifier" class="generated-password__strength"></div>
+        </div>
+    </div>
+    <div class="slide-container">
+        <h2>Customize your password</h2>
+        <input type="range" min="4" max="24" value="4" class="slider" id="myRange" onchange="genPassword()">
+        <div>Value: <span id="demo"></span></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
