@@ -163,17 +163,29 @@ input::placeholder{
 }
 
 @media screen and (max-width: 1280px) {
-    div.container {
+    .container {
         width: 1200px;
     }
 }
 @media screen and (max-width: 1140px) {
-    div.container {
+    .container {
         width: 1024px;
     }
 }
  @media screen and (max-width: 992px) {
-    div. container {
+    .container {
         width: 970px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 748px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+        width: 560px;
     }
 }
