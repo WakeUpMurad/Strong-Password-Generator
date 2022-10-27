@@ -42,9 +42,10 @@ function genPasswordSelect() {
     genPassword()
 }
 
+let rotation = 0;
+const angle = 180;
+
 function genPasswordRefresh() {
-    let rotation = 0;
-    const angle = 180;
     rotation += angle;
     rotateBtn.style.transform = `rotate(${rotation}deg)`;
     rotateBtn.style.transition = '1s';
