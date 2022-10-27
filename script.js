@@ -2,18 +2,13 @@
 const rotateBtn = document.getElementById("gen-btn");
 const colorIdentifier = document.getElementById("color-identifier");
 const slider = document.getElementById("myRange");
-const output = document.getElementById("demo");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-    output.innerHTML = this.value;
-}
-
+const output = document.getElementById("password-length");
+output.value = slider.value;
 
 
 function genPassword() {
-    const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let passwordLength = output.innerHTML;
+    const chars = "0123456789abcdefghijklmnopqrstuvwxyz!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let passwordLength = output.value;
     let password = "";
     for (let i = 0; i < passwordLength; i++) {
         let randomNumber = Math.floor(Math.random() * chars.length);
@@ -33,6 +28,18 @@ function genPassword() {
         colorIdentifier.style.backgroundColor = 'green';
         colorIdentifier.style.width = '100%';
     }
+
+
+}
+
+function genPasswordSlider() {
+    output.value = slider.value;
+    genPassword()
+}
+
+function genPasswordSelect() {
+    slider.value = output.value;
+    genPassword()
 }
 
 function genPasswordRefresh() {

@@ -45,8 +45,8 @@
     </div>
     <div class="slide-container">
         <h2>Customize your password</h2>
-        <input type="range" min="4" max="24" value="4" class="slider" id="myRange" onchange="genPassword()">
-        <div>Value: <span id="demo"></span></div>
+        <input type="range" min="4" max="24" value="4" class="slider" id="myRange" onchange="genPasswordSlider()">
+        Password Length: <input value="4" name="length" class="custom-range__number" step="1" id="password-length" type="number" min="4" max="24" onchange="genPasswordSelect()">
     </div>
 </div>
 
