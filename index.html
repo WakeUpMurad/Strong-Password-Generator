@@ -88,12 +88,12 @@
                                    placeholder="Create password" id="password" readonly>
                         </form>
                         <div class="generated-password__btn">
-                            <button id="copy-btn" class="btn" onclick="copyPassword()">
+                            <button id="copy-btn" class="btn" onclick="genNewPassword.copyPassword()">
                         <span class="btn-content">
                             Copy
                         </span>
                             </button>
-                            <button id="gen-btn" class="btn" onclick="genPasswordRefresh()">
+                            <button id="gen-btn" class="btn" onclick="doRotateBtn()">
                         <span class="btn-content">
                             Generate
                         </span>
@@ -107,11 +107,11 @@
                 <section class="slide-container">
                     <h2>Customize your password</h2>
                     <div class="slider-input">
-                        <input type="range" min="4" max="24" value="4" class="slider" id="myRange" onchange="genPasswordSlider()">
+                        <input type="range" min="4" max="24" value="4" class="slider" id="sliderValue" onchange="genNewPassword.genPassword(value)">
                     </div>
                     <div class="password-length">
                         <span>Password Length: </span>
-                        <input value="4" name="length" class="custom-range__number" step="1" id="password-length" type="number" min="4" max="24" onchange="genPasswordSelect()">
+                        <input value="4" name="length" class="custom-range__number" step="1" id="selectValue" type="number" min="4" max="24" onchange="genNewPassword.genPassword(value)">
                     </div></section>
             </div>
         </div>
