@@ -1,18 +1,22 @@
 
 class Component {
-    turns = 1
     constructor(selector) {
         this.$el = document.querySelector(selector);
     }
-    getValue() {
-        return this.$el.value
+}
+
+class InputWithNewValue extends Component{
+    constructor(selector) {
+        super(selector)
     }
-    setValue(val) {
-        this.$el.value = val;
+    setValue(value) {
+        this.$el.value = value;
     }
-    setRotate() {
-        this.$el.style.transform = `rotate(${this.turns * 0.5}turn)`;
-        this.turns++
+}
+
+class ColorIdentifier extends Component {
+    constructor(selector) {
+        super(selector)
     }
     setBackgroundColor(backgroundColor) {
         this.$el.style.backgroundColor = backgroundColor;
@@ -22,48 +26,68 @@ class Component {
     }
 }
 
-const slider = new Component("#sliderValue");
-const select = new Component("#selectValue");
-const password = new Component("#password");
-const colorIdentifier = new Component("#color-identifier");
-const rotateBtn = new Component("#gen-btn");
+class Rotate extends Component {
+    turns = 1
+    constructor(selector) {
+        super(selector);
+    }
+    doRotate() {
+        this.$el.style.transform = `rotate(${this.turns * 0.5}turn)`;
+        this.turns++
+    }
 
+}
 
-class PasswordGenerator {
+class PasswordGenerator extends Component {
 
     chars = "0123456789abcdefghijklmnopqrstuvwxyz!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    rotateBtn = new Rotate("#gen-btn");
+    password = new InputWithNewValue("#password");
+    slider = new InputWithNewValue("#sliderValue");
+    select = new InputWithNewValue("#selectValue");
+    colorIdentifier = new ColorIdentifier("#color-identifier");
 
-    genPassword(passwordLength = select.getValue()) {
-        select.setValue(passwordLength);
-        slider.setValue(passwordLength);
+    constructor(selector) {
+        super(selector);
+    }
+
+    changeColor() {
+        if (this.slider.$el.value <= 8 ) {
+            this.colorIdentifier.setBackgroundColor("red");
+            this.colorIdentifier.setWidth("25%");
+        } else if (this.slider.$el.value > 8 &&  this.slider.$el.value <= 14 ){
+            this.colorIdentifier.setBackgroundColor("orange");
+            this.colorIdentifier.setWidth("50%");
+        } else if (this.slider.$el.value > 14 ) {
+            this.colorIdentifier.setBackgroundColor("green");
+            this.colorIdentifier.setWidth("100%");
+        }
+    }
+
+    genPassword(passwordLength) {
+
+        this.slider.setValue(passwordLength)
+        this.select.setValue(passwordLength)
+
         let newPassword = '';
         for (let i = 0; i < passwordLength; i++) {
             let randomNumber = Math.floor(Math.random() * this.chars.length);
             newPassword += this.chars.substring(randomNumber, randomNumber + 1);
         }
-        password.setValue(newPassword)
+        this.password.setValue(newPassword);
+        this.changeColor();
+    }
 
-        if (slider.getValue() <= 8 ) {
-            colorIdentifier.setBackgroundColor('red')
-            colorIdentifier.setWidth('25%')
-        } else if (slider.getValue() > 8 &&  slider.getValue() <= 14 ){
-            colorIdentifier.setBackgroundColor('orange')
-            colorIdentifier.setWidth('50%')
-        } else if (slider.getValue() > 14 ) {
-            colorIdentifier.setBackgroundColor('green')
-            colorIdentifier.setWidth('100%')
-        }
+    refreshGenPassword() {
+        this.genPassword(this.select.$el.value);
+        this.rotateBtn.doRotate();
     }
 
     copyPassword() {
-        password.$el.select();
+        this.password.$el.select();
         document.execCommand("copy");
     }
 
 }
 
 const genNewPassword = new PasswordGenerator();
-const doRotateBtn = () => {
-    genNewPassword.genPassword();
-    rotateBtn.setRotate();
-}
