@@ -42,7 +42,7 @@ input {
     font-size: 1.25rem;
 }
 
-input::placeholder{
+input::placeholder {
     font-size: 1rem;
 }
 
@@ -56,7 +56,7 @@ input::placeholder{
     position: fixed;
     top: 0;
     width: 100vw;
-    z-index: 1030;
+    z-index: 10;
 }
 
 .navbar {
@@ -79,6 +79,7 @@ input::placeholder{
     padding-right: 0.5rem;
     color: rgba(0, 0, 0, 0.9);
 }
+
 .navbar-toggler {
     padding: 0.25rem 0.75rem;
     font-size: 1.25rem;
@@ -119,6 +120,7 @@ input::placeholder{
 .dropdown {
     position: relative;
 }
+
 .dropdown-toggle {
     white-space: nowrap;
 }
@@ -172,11 +174,13 @@ input::placeholder{
 
 .intro {
     margin-bottom: 1rem;
-    padding: 2rem;
+    padding: 1rem;
 }
+
 .intro h1 {
     font-size: 3rem;
 }
+
 .intro h4 {
     font-weight: 400;
 }
@@ -195,6 +199,7 @@ input::placeholder{
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }
+
 .generated-password__form {
     display: flex;
     justify-content: space-between;
@@ -203,6 +208,7 @@ input::placeholder{
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
 .created-password {
     width: 100%;
     display: flex;
@@ -234,13 +240,16 @@ input#password {
     background-repeat: no-repeat;
     background-color: #FFF;
 }
+
 .btn:hover {
     color: #F79E02;
     background-color: white;
 }
+
 .btn-content {
     display: none;
 }
+
 #gen-btn {
     background-image: url("../image/ico/refresh.png");
     transition: 1s;
@@ -256,6 +265,7 @@ input#password {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
+
 .generated-password__strength {
     width: 100%;
     height: 0.5rem;
@@ -264,6 +274,39 @@ input#password {
     border-bottom-right-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     transition: 1s;
+}
+
+.myModal {
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.myModalContent {
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 10rem;
+    padding: 1rem;
+    border: 1px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    background: #FFF;
+}
+
+.myModal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slide-container {
@@ -304,6 +347,7 @@ input#password {
     background: #F79E02;
     cursor: pointer;
 }
+
 .slider-input {
     margin-bottom: 1rem;
 }
@@ -312,6 +356,7 @@ input#password {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .password-complication {
@@ -323,6 +368,64 @@ input#password {
 input#selectValue {
     width: 3rem;
     border-radius: 0.5rem;
+}
+
+.custom-password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0.5rem;
+}
+
+.custom-password-fill {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.custom-password-fill+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+.custom-password-fill+label::before {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+.custom-password-fill:checked+label::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.custom-password-fill:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+}
+
+.custom-password-fill:not(:disabled):active+label::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+
+.custom-password-fill:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-password-fill:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+
+.custom-password-fill:disabled+label::before {
+    background-color: #e9ecef;
 }
 
 /*Footer styles*/
@@ -362,6 +465,7 @@ input#selectValue {
 .footer__list__item {
     margin-left: 1rem;
 }
+
 .text-muted {
     --text-opacity: 1;
     color: #6c757d;
@@ -371,11 +475,13 @@ input#selectValue {
     .container {
         max-width: 220px;
     }
+
     .generated-password__btn {
         display: flex;
         width: 35%;
     }
 }
+
 @media (min-width: 375px) {
     .container {
         max-width: 340px;
@@ -383,10 +489,6 @@ input#selectValue {
 
     .header {
         margin-bottom: 5rem;
-    }
-
-    .intro {
-        padding: 1rem;
     }
 
     .intro h1 {
@@ -403,30 +505,36 @@ input#selectValue {
     .container {
         max-width: 540px;
     }
+
     .generated-password__btn {
         display: flex;
         width: 100%;
     }
 }
+
 @media (min-width: 768px) {
     .container {
         max-width: 720px;
     }
+
     .nav {
         flex-wrap: nowrap;
         justify-content: flex-start;
     }
 }
+
 @media (min-width: 992px) {
     .container {
         max-width: 960px;
     }
 }
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1140px;
     }
 }
+
 @media (min-width: 1400px) {
     .container {
         max-width: 1320px;

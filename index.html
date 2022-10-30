@@ -8,238 +8,227 @@
     <title>Document</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
-    <body>
-    <header class="header">
-        <div class="container"> </div>
-    </header>
-    <nav class="nav">
-        <div class="container">
-            <div class="navbar">
-                <a class="navbar-brand" href="/">
-                    <img src="image/user.png" alt="msn" width="40" height="40" class="rounded-circle">
-                </a>
-                <!-- Left Side Of Navbar -->
+<body>
+<header class="header">
+    <div class="container"></div>
+</header>
+<nav class="nav">
+    <div class="container">
+        <div class="navbar">
+            <a class="navbar-brand" href="/">
+                <img src="image/user.png" alt="msn" width="40" height="40" class="rounded-circle">
+            </a>
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form class="form-search" role="search">
+                        <input type="search" class="form-search-input" placeholder="Search...">
+                    </form>
+                </li>
+            </ul>
+            <div class="navbar-collapse" id="navbarSupportedContent">
+                <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav">
+                    <!-- Authentication Links -->
                     <li class="nav-item">
-                        <form class="form-search" role="search">
-                            <input type="search" class="form-search-input" placeholder="Search...">
-                        </form>
+                        <a class="nav-link" href="/">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <img class="rounded-circle" width="24" height="24" src="/" alt="img"/>
+                            <span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <img class="rounded-circle" width="24" height="24" src="" alt="img"/>
+                            <span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <img class="rounded-circle" width="24" height="24" src="" alt="img"/>
+                            <span></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link-dropdown-toggle" href="#">
+                            <img src="image/user.png" alt="logo" width="24" height="24" class="rounded-circle">
+                            <span></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/"></a>
+                            <form id="logout-form" action="" method="POST" class="d-none"></form>
+                        </div>
                     </li>
                 </ul>
-                <div class="navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <img class="rounded-circle" width="24" height="24" src="/" alt="img"/>
-                                <span></span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">
-                                <img class="rounded-circle" width="24" height="24" src="" alt="img"/>
-                                <span></span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">
-                                <img class="rounded-circle" width="24" height="24" src="" alt="img"/>
-                                <span></span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link-dropdown-toggle" href="#">
-                                <img src="image/user.png" alt="logo" width="24" height="24" class="rounded-circle">
-                                <span></span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/"></a>
-                                <form id="logout-form" action="" method="POST" class="d-none"></form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <div class="content">
-                <section class="intro ">
-                    <h1>Strong Password Generator</h1>
-                    <div class="intro__copy">
-                        <h4>
-                            Use our online password generator to instantly create a secure, random password.
-                        </h4>
-                    </div>
-                </section>
-                <section class="generated-password">
-                    <div class="generated-password__form">
-                        <form class="created-password" role="presentation">
-                            <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password1" readonly>
-                            <button id="copy-btn1" class="btn" onclick={{genNewPassword.copyPassword("password1")}}>
+    </div>
+</nav>
+<main class="main">
+    <div class="container">
+        <div class="content">
+            <section class="intro ">
+                <h1>Strong Password Generator</h1>
+                <div class="intro__copy">
+                    <h4>
+                        Use our online password generator to instantly create a secure, random password.
+                    </h4>
+                </div>
+            </section>
+            <section class="generated-password">
+                <div class="generated-password__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password1" readonly>
+                        <button id="copy-btn1" class="btn" onclick={{genNewPassword.copyPassword("password1")}}>
                                 <span class="btn-content">
                                     Copy
                                 </span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="generated-password__form">
-                        <form class="created-password" role="presentation">
-                            <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password2" readonly>
-                            <button id="copy-btn2" class="btn" onclick={{genNewPassword.copyPassword("password2")}}>
+                        </button>
+                    </form>
+                </div>
+                <div class="generated-password__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password2" readonly>
+                        <button id="copy-btn2" class="btn" onclick={{genNewPassword.copyPassword("password2")}}>
                                 <span class="btn-content">
                                     Copy
                                 </span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="generated-password__form">
-                        <form class="created-password" role="presentation">
-                            <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password3" readonly>
-                            <button id="copy-btn3" class="btn" onclick={{genNewPassword.copyPassword("password3")}}>
+                        </button>
+                    </form>
+                </div>
+                <div class="generated-password__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password3" readonly>
+                        <button id="copy-btn3" class="btn" onclick={{genNewPassword.copyPassword("password3")}}>
                                 <span class="btn-content">
                                     Copy
                                 </span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="generated-password__form">
-                        <form class="created-password" role="presentation">
-                            <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password4" readonly>
-                            <button id="copy-btn4" class="btn" onclick={{genNewPassword.copyPassword("password4")}}>
+                        </button>
+                    </form>
+                </div>
+                <div class="generated-password__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password4" readonly>
+                        <button id="copy-btn4" class="btn" onclick={{genNewPassword.copyPassword("password4")}}>
                                 <span class="btn-content">
                                     Copy
                                 </span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="generated-password__form">
-                        <form class="created-password" role="presentation">
-                            <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password5" readonly>
-                            <button id="copy-btn5" class="btn" onclick={{genNewPassword.copyPassword("password5")}}>
+                        </button>
+                    </form>
+                </div>
+                <div class="generated-password__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password5" readonly>
+                        <button id="copy-btn5" class="btn" onclick={{genNewPassword.copyPassword("password5")}}>
                                 <span class="btn-content">
                                     Copy
                                 </span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="generated-password__btn">
-                        <button id="gen-btn" class="btn" onclick="genNewPassword.refreshGenPassword()">
+                        </button>
+                    </form>
+                </div>
+                <div class="generated-password__btn">
+                    <button id="gen-btn" class="btn" onclick="genNewPassword.refreshGenPassword()">
                             <span class="btn-content">
                                 Generate
                             </span>
-                        </button>
-                    </div>
-                    <div class="generated-password__strength-wrapper">
-                        <div id="color-identifier" class="generated-password__strength"></div>
-                    </div>
-                </section>
-                <section class="slide-container">
-                    <h2>Customize your password</h2>
-                    <div class="slider-input">
-                        <input type="range" min="4" max="24" value="4" class="slider" id="sliderValue"
-                               onchange="genNewPassword.genPassword(value)">
-
-                    </div>
-                    <div class="password-length">
-                        <span>Password Length: </span>
-                        <input value="4" name="length" class="custom-range__number" step="1" id="selectValue"
-                               type="number" min="4" max="24" onchange="genNewPassword.genPassword(value)">
-                        <!--list="defaultNumbers"-->
-                       <!-- <datalist id="defaultNumbers">
-                            <option value="4">
-                            <option value="5">
-                            <option value="6">
-                            <option value="7">
-                            <option value="8">
-                            <option value="9">
-                            <option value="10">
-                            <option value="11">
-                            <option value="12">
-                            <option value="13">
-                            <option value="14">
-                            <option value="15">
-                            <option value="16">
-                            <option value="17">
-                            <option value="18">
-                            <option value="19">
-                            <option value="20">
-                            <option value="21">
-                            <option value="22">
-                            <option value="23">
-                            <option value="24">
-                        </datalist>-->
-                    </div>
-                    <div class="password-complication">
-                        <span>Russian alphabet</span>
-                        <input class="custom-range__number"  id="russian-alphabet" type="checkbox" checked
-                               onclick="genNewPassword.refreshGenPassword()">
-                        <span>English alphabet</span>
-                        <input class="custom-range__number"  id="english-alphabet" type="checkbox" checked
-                               onclick="genNewPassword.refreshGenPassword()">
-                        <span>Uppercase</span>
-                        <input class="custom-range__number"  id="upperCaseValue" type="checkbox" checked
-                               onclick="genNewPassword.refreshGenPassword()">
-                        <span>Numbers</span>
-                        <input class="custom-range__number"  id="numbers" type="checkbox" checked
-                               onclick="genNewPassword.refreshGenPassword()">
-                        <span>Symbols</span>
-                        <input class="custom-range__number"  id="symbols" type="checkbox" checked
-                               onclick="genNewPassword.refreshGenPassword()">
-                    </div>
-                </section>
-
-            </div>
-        </div>
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__body">
-                <div class="footer__copyright">
-                    <a href="/" class="footer__link">
-                        <img class="rounded-circle" width="30" height="30" src="image/user.png" alt="msn"/>
-                    </a>
-                    <span class="text-muted">© 2022 Murad Gakhramanov Company, Inc</span>
+                    </button>
                 </div>
-                <ul class="footer__list">
-                    <li class="footer__list__item">
-                        <a href="https://www.instagram.com/murad.savage" class="footer__link">
-                            <img width="30" height="30" src="image/instagram.png" alt="img"/>
-                        </a>
-                    </li>
-                    <li class="footer__list__item">
-                        <a href="https://web.telegram.org/murad_savage" class="footer__link">
-                            <img width="30" height="30" src="image/telegram.png" alt="img"/>
-                        </a>
-                    </li>
-                    <li class="footer__list__item">
-                        <a href="https://www.linkedin.com/in/murad-gakhramanov" class="footer__link">
-                            <img width="30" height="30" src="image/linkedin.png" alt="img"/>
-                        </a>
-                    </li>
-                    <li class="footer__list__item">
-                        <a href="https://github.com/WakeUpMurad" class="footer__link">
-                            <img width="30" height="30" src="image/github.png" alt="img"/>
-                        </a>
-                    </li>
-                </ul>
+                <div class="generated-password__strength-wrapper">
+                    <div id="color-identifier" class="generated-password__strength"></div>
+                </div>
+            </section>
+            <section class="slide-container">
+                <h2>Customize your password</h2>
+                <div class="slider-input">
+                    <input type="range" min="4" max="24" value="4" class="slider" id="sliderValue"
+                           onchange="genNewPassword.genPassword(value)">
+
+                </div>
+                <div class="password-length">
+                    <span>Password Length: </span>
+                    <input value="4" name="length" class="custom-range--number" step="1" id="selectValue"
+                           type="number" min="4" max="24" onchange="genNewPassword.genPassword(value)">
+                </div>
+                <div class="password-complication">
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="russian-alphabet" type="checkbox" name="russian-alphabet"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="russian-alphabet">Russian alphabet</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="english-alphabet" type="checkbox" name="english-alphabet"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="english-alphabet">English alphabet</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="upperCaseValue" type="checkbox" name="upperCaseValue"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="upperCaseValue">Uppercase</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="numbers" type="checkbox" name="numbers"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="numbers">Numbers</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="symbols" type="checkbox" name="symbols"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="symbols">Symbols</label>
+                    </div>
+                </div>
+            </section>
+            <div class="myModal" id="myModal" onclick="genNewPassword.hideModal()">
+                <div class="myModalContent" id="myModalContent" onclick="event.stopPropagation()">
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</main>
+<footer class="footer">
+    <div class="container">
+        <div class="footer__body">
+            <div class="footer__copyright">
+                <a href="/" class="footer__link">
+                    <img class="rounded-circle" width="30" height="30" src="image/user.png" alt="msn"/>
+                </a>
+                <span class="text-muted">© 2022 Murad Gakhramanov Company, Inc</span>
+            </div>
+            <ul class="footer__list">
+                <li class="footer__list__item">
+                    <a href="https://www.instagram.com/murad.savage" class="footer__link">
+                        <img width="30" height="30" src="image/instagram.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://web.telegram.org/murad_savage" class="footer__link">
+                        <img width="30" height="30" src="image/telegram.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://www.linkedin.com/in/murad-gakhramanov" class="footer__link">
+                        <img width="30" height="30" src="image/linkedin.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://github.com/WakeUpMurad" class="footer__link">
+                        <img width="30" height="30" src="image/github.png" alt="img"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
 <script defer src="script/script.js"></script>
 </body>
 </html>
