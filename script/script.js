@@ -39,7 +39,6 @@ class Rotate extends Component {
 }
 
 class PasswordGenerator extends Component {
-
     russianAlphabet = new Component("#russian-alphabet");
     englishAlphabet = new Component("#english-alphabet");
     upperCaseValue = new Component("#upperCaseValue");
@@ -47,7 +46,13 @@ class PasswordGenerator extends Component {
     symbols = new Component("#symbols");
 
     rotateBtn = new Rotate("#gen-btn");
-    password = new ComponentWithNewValue("#password");
+    password1 = new ComponentWithNewValue("#password1");
+    password2 = new ComponentWithNewValue("#password2");
+    password3 = new ComponentWithNewValue("#password3");
+    password4 = new ComponentWithNewValue("#password4");
+    password5 = new ComponentWithNewValue("#password5");
+    genPasswords = [this.password1, this.password2, this.password3, this.password4, this.password5];
+
     slider = new ComponentWithNewValue("#sliderValue");
     select = new ComponentWithNewValue("#selectValue");
     colorIdentifier = new ColorIdentifier("#color-identifier");
@@ -102,12 +107,16 @@ class PasswordGenerator extends Component {
         this.slider.setValue(passwordLength)
         this.select.setValue(passwordLength)
 
-        let newPassword = '';
-        for (let i = 0; i < passwordLength; i++) {
-            let randomNumber = Math.floor(Math.random() * chars.length);
-            newPassword += chars.substring(randomNumber, randomNumber + 1);
-        }
-        this.password.setValue(newPassword);
+
+        this.genPasswords.map( p => {
+            let newPassword = '';
+            for (let i = 0; i < passwordLength; i++) {
+                let randomNumber = Math.floor(Math.random() * chars.length);
+                newPassword += chars.substring(randomNumber, randomNumber + 1);
+            }
+            p.setValue(newPassword);
+        })
+
         this.changeColor();
     }
 
@@ -116,9 +125,14 @@ class PasswordGenerator extends Component {
         this.rotateBtn.doRotate();
     }
 
-    copyPassword() {
-        this.password.$el.select();
-        document.execCommand("copy");
+    copyPassword(password) {
+        event.preventDefault();
+        this.genPasswords.map( p => {
+            if(p.$el.id === password) {
+                p.$el.select();
+                document.execCommand("copy");
+            }
+        })
     }
 
 }

@@ -85,20 +85,64 @@
                     <div class="generated-password__form">
                         <form class="created-password" role="presentation">
                             <input type="text" class="form-created-password-input"
-                                   placeholder="Create password" id="password" readonly>
+                                   placeholder="Create password" id="password1" readonly>
+                            <button id="copy-btn1" class="btn" onclick={{genNewPassword.copyPassword("password1")}}>
+                                <span class="btn-content">
+                                    Copy
+                                </span>
+                            </button>
                         </form>
-                        <div class="generated-password__btn">
-                            <button id="copy-btn" class="btn" onclick="genNewPassword.copyPassword()">
-                        <span class="btn-content">
-                            Copy
-                        </span>
+                    </div>
+                    <div class="generated-password__form">
+                        <form class="created-password" role="presentation">
+                            <input type="text" class="form-created-password-input"
+                                   placeholder="Create password" id="password2" readonly>
+                            <button id="copy-btn2" class="btn" onclick={{genNewPassword.copyPassword("password2")}}>
+                                <span class="btn-content">
+                                    Copy
+                                </span>
                             </button>
-                            <button id="gen-btn" class="btn" onclick="genNewPassword.refreshGenPassword()">
-                        <span class="btn-content">
-                            Generate
-                        </span>
+                        </form>
+                    </div>
+                    <div class="generated-password__form">
+                        <form class="created-password" role="presentation">
+                            <input type="text" class="form-created-password-input"
+                                   placeholder="Create password" id="password3" readonly>
+                            <button id="copy-btn3" class="btn" onclick={{genNewPassword.copyPassword("password3")}}>
+                                <span class="btn-content">
+                                    Copy
+                                </span>
                             </button>
-                        </div>
+                        </form>
+                    </div>
+                    <div class="generated-password__form">
+                        <form class="created-password" role="presentation">
+                            <input type="text" class="form-created-password-input"
+                                   placeholder="Create password" id="password4" readonly>
+                            <button id="copy-btn4" class="btn" onclick={{genNewPassword.copyPassword("password4")}}>
+                                <span class="btn-content">
+                                    Copy
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="generated-password__form">
+                        <form class="created-password" role="presentation">
+                            <input type="text" class="form-created-password-input"
+                                   placeholder="Create password" id="password5" readonly>
+                            <button id="copy-btn5" class="btn" onclick={{genNewPassword.copyPassword("password5")}}>
+                                <span class="btn-content">
+                                    Copy
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="generated-password__btn">
+                        <button id="gen-btn" class="btn" onclick="genNewPassword.refreshGenPassword()">
+                            <span class="btn-content">
+                                Generate
+                            </span>
+                        </button>
                     </div>
                     <div class="generated-password__strength-wrapper">
                         <div id="color-identifier" class="generated-password__strength"></div>
@@ -144,28 +188,19 @@
                         <span>Russian alphabet</span>
                         <input class="custom-range__number"  id="russian-alphabet" type="checkbox" checked
                                onclick="genNewPassword.refreshGenPassword()">
-                    </div>
-                    <div class="password-complication">
                         <span>English alphabet</span>
                         <input class="custom-range__number"  id="english-alphabet" type="checkbox" checked
                                onclick="genNewPassword.refreshGenPassword()">
-                    </div>
-                    <div class="password-complication">
                         <span>Uppercase</span>
                         <input class="custom-range__number"  id="upperCaseValue" type="checkbox" checked
                                onclick="genNewPassword.refreshGenPassword()">
-                    </div>
-                    <div class="password-complication">
                         <span>Numbers</span>
                         <input class="custom-range__number"  id="numbers" type="checkbox" checked
                                onclick="genNewPassword.refreshGenPassword()">
-                    </div>
-                    <div class="password-complication">
                         <span>Symbols</span>
                         <input class="custom-range__number"  id="symbols" type="checkbox" checked
                                onclick="genNewPassword.refreshGenPassword()">
                     </div>
-
                 </section>
 
             </div>
