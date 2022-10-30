@@ -5,7 +5,7 @@ class Component {
     }
 }
 
-class InputWithNewValue extends Component{
+class ComponentWithNewValue extends Component{
     constructor(selector) {
         super(selector)
     }
@@ -39,18 +39,46 @@ class Rotate extends Component {
 }
 
 class PasswordGenerator extends Component {
+    upperCaseValue = new Component("#upperCaseValue");
+    lowerCaseValue = new Component("#lowerCaseValue");
+    numbers = new Component("#numbers");
+    symbols = new Component("#symbols");
+    englishAlphabet = new Component("#english-alphabet");
 
-    chars = "0123456789abcdefghijklmnopqrstuvwxyz!#$%&'()*+,-./:;<=>?@[\]^_`{|}~ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     rotateBtn = new Rotate("#gen-btn");
-    password = new InputWithNewValue("#password");
-    slider = new InputWithNewValue("#sliderValue");
-    select = new InputWithNewValue("#selectValue");
+    password = new ComponentWithNewValue("#password");
+    slider = new ComponentWithNewValue("#sliderValue");
+    select = new ComponentWithNewValue("#selectValue");
     colorIdentifier = new ColorIdentifier("#color-identifier");
 
     constructor(selector) {
         super(selector);
     }
 
+    changeChars() {
+        let numbers = "0123456789";
+        let symbols = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+        let rusWords = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        let engWords = "abcdefghijklmnopqrstuvwxyz";
+        let chars = [rusWords];
+
+        if(this.englishAlphabet.$el.checked) {
+            chars.push(engWords)
+            if (this.upperCaseValue.$el.checked) {
+                chars.push(engWords.toUpperCase());
+            }
+        }
+        if (this.upperCaseValue.$el.checked) {
+            chars.push(rusWords.toUpperCase());
+        }
+        if (this.numbers.$el.checked) {
+            chars.push(numbers);
+        }
+        if (this.symbols.$el.checked) {
+            chars.push(symbols);
+        }
+        return chars.join('');
+    }
     changeColor() {
         if (this.slider.$el.value <= 8 ) {
             this.colorIdentifier.setBackgroundColor("red");
@@ -65,14 +93,14 @@ class PasswordGenerator extends Component {
     }
 
     genPassword(passwordLength) {
-
+        let chars = this.changeChars();
         this.slider.setValue(passwordLength)
         this.select.setValue(passwordLength)
 
         let newPassword = '';
         for (let i = 0; i < passwordLength; i++) {
-            let randomNumber = Math.floor(Math.random() * this.chars.length);
-            newPassword += this.chars.substring(randomNumber, randomNumber + 1);
+            let randomNumber = Math.floor(Math.random() * chars.length);
+            newPassword += chars.substring(randomNumber, randomNumber + 1);
         }
         this.password.setValue(newPassword);
         this.changeColor();
