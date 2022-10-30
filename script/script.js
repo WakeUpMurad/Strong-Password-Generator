@@ -39,11 +39,12 @@ class Rotate extends Component {
 }
 
 class PasswordGenerator extends Component {
+
+    russianAlphabet = new Component("#russian-alphabet");
+    englishAlphabet = new Component("#english-alphabet");
     upperCaseValue = new Component("#upperCaseValue");
-    lowerCaseValue = new Component("#lowerCaseValue");
     numbers = new Component("#numbers");
     symbols = new Component("#symbols");
-    englishAlphabet = new Component("#english-alphabet");
 
     rotateBtn = new Rotate("#gen-btn");
     password = new ComponentWithNewValue("#password");
@@ -60,7 +61,7 @@ class PasswordGenerator extends Component {
         let symbols = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
         let rusWords = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
         let engWords = "abcdefghijklmnopqrstuvwxyz";
-        let chars = [rusWords];
+        let chars = [   ];
 
         if(this.englishAlphabet.$el.checked) {
             chars.push(engWords)
@@ -68,9 +69,13 @@ class PasswordGenerator extends Component {
                 chars.push(engWords.toUpperCase());
             }
         }
-        if (this.upperCaseValue.$el.checked) {
-            chars.push(rusWords.toUpperCase());
+        if(this.russianAlphabet.$el.checked) {
+            chars.push(rusWords)
+            if (this.upperCaseValue.$el.checked) {
+                chars.push(rusWords.toUpperCase());
+            }
         }
+
         if (this.numbers.$el.checked) {
             chars.push(numbers);
         }

@@ -141,20 +141,29 @@
                         </datalist>-->
                     </div>
                     <div class="password-complication">
+                        <span>Russian alphabet</span>
+                        <input class="custom-range__number"  id="russian-alphabet" type="checkbox" checked
+                               onclick="genNewPassword.refreshGenPassword()">
+                    </div>
+                    <div class="password-complication">
                         <span>English alphabet</span>
-                        <input class="custom-range__number"  id="english-alphabet" type="checkbox" onclick="genNewPassword.refreshGenPassword()">
+                        <input class="custom-range__number"  id="english-alphabet" type="checkbox" checked
+                               onclick="genNewPassword.refreshGenPassword()">
                     </div>
                     <div class="password-complication">
                         <span>Uppercase</span>
-                        <input class="custom-range__number"  id="upperCaseValue" type="checkbox" onclick="genNewPassword.refreshGenPassword()">
+                        <input class="custom-range__number"  id="upperCaseValue" type="checkbox" checked
+                               onclick="genNewPassword.refreshGenPassword()">
                     </div>
                     <div class="password-complication">
                         <span>Numbers</span>
-                        <input class="custom-range__number"  id="numbers" type="checkbox" onclick="genNewPassword.refreshGenPassword()">
+                        <input class="custom-range__number"  id="numbers" type="checkbox" checked
+                               onclick="genNewPassword.refreshGenPassword()">
                     </div>
                     <div class="password-complication">
                         <span>Symbols</span>
-                        <input class="custom-range__number"  id="symbols" type="checkbox" onclick="genNewPassword.refreshGenPassword()">
+                        <input class="custom-range__number"  id="symbols" type="checkbox" checked
+                               onclick="genNewPassword.refreshGenPassword()">
                     </div>
 
                 </section>
