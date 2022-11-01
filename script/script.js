@@ -1,184 +1,81 @@
-class Component {
-    constructor(selector) {
-        this.$el = document.querySelector(selector);
+"use strict"
+const isMobile = {
+    iOS: function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Android: function () {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    Opera: function () {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function () {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function () {
+        return (
+            isMobile.iOS() ||
+            isMobile.Android() ||
+            isMobile.BlackBerry() ||
+            isMobile.Opera() ||
+            isMobile.Windows());
     }
-}
+};
 
-class ComponentWithNewValue extends Component {
-    constructor(selector) {
-        super(selector)
-    }
+if(isMobile.any()) {
+    document.body.classList.add('_touch');
 
-    setValue(value) {
-        this.$el.value = value;
-    }
-}
-
-class ColorIdentifier extends Component {
-    constructor(selector) {
-        super(selector)
-    }
-
-    setBackgroundColor(backgroundColor) {
-        this.$el.style.backgroundColor = backgroundColor;
-    }
-
-    setWidth(width) {
-        this.$el.style.width = width;
-    }
-}
-
-class Rotate extends Component {
-    turns = 1
-
-    constructor(selector) {
-        super(selector);
-    }
-
-    doRotate() {
-        this.$el.style.transform = `rotate(${this.turns * 0.5}turn)`;
-        this.turns++
-    }
-
-}
-
-class MyModal extends Component {
-    constructor(selector) {
-        super(selector);
-    }
-
-    putCopiedPass(elem) {
-        this.$el.appendChild(elem.cloneNode(true));
-    }
-    removeCopiedPass() {
-        while (this.$el.firstChild) {
-            this.$el.removeChild(this.$el.firstChild);
+    let menuArrows = document.querySelectorAll('.menu__arrow');
+    if(menuArrows.length > 0) {
+        for (let i = 0; i < menuArrows.length; i++) {
+            const menuArrow = menuArrows[i];
+            menuArrow.addEventListener('click', function (e) {
+                menuArrow.parentElement.classList.toggle('_active')
+            });
         }
     }
-    show() {
-        this.$el.style.display = 'flex';
-    }
-    hide() {
-        this.$el.style.display = 'none';
-    }
+
+} else {
+    document.body.classList.add('_pc');
 }
 
+// Меню бургер
+const iconMenu = document.querySelector('.menu__icon');
+const menuBody = document.querySelector('.menu__body');
+if(iconMenu) {
+    iconMenu.addEventListener("click", function (e) {
+        document.body.classList.toggle('_lock');
+        iconMenu.classList.toggle('_active');
+        menuBody.classList.toggle('_active');
+    })
+}
 
-class PasswordGenerator extends Component {
-    russianAlphabet = new Component("#russian-alphabet");
-    englishAlphabet = new Component("#english-alphabet");
-    upperCaseValue = new Component("#upperCaseValue");
-    numbers = new Component("#numbers");
-    symbols = new Component("#symbols");
+// Прокрутка при клике
+const menuLinks = document.querySelectorAll('.menu__link[data-goto]');
+if(menuLinks.length > 0) {
+    menuLinks.forEach(menuLinks => {
+        menuLinks.addEventListener('click', onMenuLinkClick)
+    })
 
-    rotateBtn = new Rotate("#gen-btn");
-    password1 = new ComponentWithNewValue("#password1");
-    password2 = new ComponentWithNewValue("#password2");
-    password3 = new ComponentWithNewValue("#password3");
-    password4 = new ComponentWithNewValue("#password4");
-    password5 = new ComponentWithNewValue("#password5");
-    genPasswords = [this.password1, this.password2, this.password3, this.password4, this.password5];
+    function onMenuLinkClick(e) {
+        const menuLink = e.target;
+        if(menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
+            const gotoBlock = document.querySelector(menuLink.dataset.goto);
+            const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset - document.querySelector('header').offsetHeight;
 
-    slider = new ComponentWithNewValue("#sliderValue");
-    select = new ComponentWithNewValue("#selectValue");
-    colorIdentifier = new ColorIdentifier("#color-identifier");
-    myModal = new MyModal("#myModal");
-    myModalContent = new MyModal("#myModalContent");
-
-    constructor(selector) {
-        super(selector);
-    }
-
-    changeChars() {
-        const numbers = "0123456789";
-        const symbols = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-        const rusWords = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-        const engWords = "abcdefghijklmnopqrstuvwxyz";
-        const chars = [];
-
-        if (this.englishAlphabet.$el.checked) {
-            chars.push(engWords)
-            if (this.upperCaseValue.$el.checked) {
-                chars.push(engWords.toUpperCase());
+            if(iconMenu.classList.contains('_active')) {
+                document.body.classList.remove('_lock');
+                iconMenu.classList.remove('_active');
+                menuBody.classList.remove('_active');
             }
+            window.scrollTo({
+                top: gotoBlockValue,
+                behavior: "smooth"
+            });
+            e.preventDefault();
         }
-
-        if (this.russianAlphabet.$el.checked) {
-            chars.push(rusWords)
-
-            if (this.upperCaseValue.$el.checked) {
-                chars.push(rusWords.toUpperCase());
-            }
-        }
-
-        if (this.numbers.$el.checked) {
-            chars.push(numbers);
-        }
-
-        if (this.symbols.$el.checked) {
-            chars.push(symbols);
-        }
-
-        return chars.join('');
-    }
-
-    changeColor() {
-        if (this.slider.$el.value <= 8) {
-            this.colorIdentifier.setBackgroundColor("red");
-            this.colorIdentifier.setWidth("25%");
-        } else if (this.slider.$el.value > 8 && this.slider.$el.value <= 14) {
-            this.colorIdentifier.setBackgroundColor("orange");
-            this.colorIdentifier.setWidth("50%");
-        } else if (this.slider.$el.value > 14) {
-            this.colorIdentifier.setBackgroundColor("green");
-            this.colorIdentifier.setWidth("100%");
-        }
-    }
-
-    genPassword(passwordLength = this.select.$el.value) {
-        let chars = this.changeChars();
-        this.slider.setValue(passwordLength)
-        this.select.setValue(passwordLength)
-
-
-        this.genPasswords.map(p => {
-            let newPassword = '';
-            for (let i = 0; i < passwordLength; i++) {
-                let randomNumber = Math.floor(Math.random() * chars.length);
-                newPassword += chars.substring(randomNumber, randomNumber + 1);
-            }
-            p.setValue(newPassword);
-        })
-
-        this.changeColor();
-    }
-
-    refreshGenPassword() {
-        this.genPassword(this.select.$el.value);
-        this.rotateBtn.doRotate();
-    }
-
-    copyPassword(password) {
-        event.preventDefault();
-        this.genPasswords.map(p => {
-            if (p.$el.id === password) {
-                p.$el.select();
-                document.execCommand("copy");
-                this.myModal.show();
-                this.myModalContent.putCopiedPass(p.$el)
-            }
-        })
-
-    }
-    hideModal() {
-        this.myModal.hide();
-        this.myModalContent.removeCopiedPass()
     }
 }
-
-const genNewPassword = new PasswordGenerator();
-
-const bodyLoad = new PasswordGenerator('body');
-bodyLoad.genPassword();
-
-
