@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__container">
+            <a class="header__logo" href="/" id="headerLogo">
+                <img src="image/user.png" alt="msn" width="40" height="40" class="rounded-circle">
+            </a>
+            <form class="header__form_search" role="search" id="headerSearch">
+                <input type="search" class="form-search-input" placeholder="Search...">
+            </form>
+            <div class="header__menu menu">
+                <div class="menu__icon">
+                    <span></span>
+                </div>
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a data-goto=".page_section_intro" href="#" class="menu__link">New Page</a></li>
+                        <li><a data-goto=".page_section_generated-password" href="#" class="menu__link">Register</a>
+                        </li>
+                        <li><a data-goto=".page__section_slide-container" href="#" class="menu__link">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="/" class="menu__link"><img src="image/user.png" width="24" height="24" alt=""></a>
+                            <span class="menu__arrow"></span>
+                            <ul class="menu__sub-list">
+                                <li>
+                                    <a href="" class="menu__sub-link">My profile</a>
+                                </li>
+                                <li>
+                                    <a href="" class="menu__sub-link">Register</a>
+                                </li>
+                                <li>
+                                    <a href="" class="menu__sub-link">Contact Us</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<main class="page">
+    <div class="container">
+        <div class="page__container">
+            <h1 class="page_title">Strong Password Generator</h1>
+            <h4 class="page_title">Use our online password generator to instantly create a secure, random password.</h4>
+            <section class="page__section gen-pass">
+                <div class="gen-pass__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input" name="password"
+                               placeholder="Create password" id="password1" readonly>
+                        <button id="copy-btn1" class="btn" onclick={{genNewPassword.copyPassword("password1")}}>
+                            <span class="btn-content">
+                                Copy
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="gen-pass__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input" name="password"
+                               placeholder="Create password" id="password2" readonly>
+                        <button id="copy-btn2" class="btn" onclick={{genNewPassword.copyPassword("password2")}}>
+                            <span class="btn-content">
+                                Copy
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="gen-pass__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input" name="password"
+                               placeholder="Create password" id="password3" readonly>
+                        <button id="copy-btn3" class="btn" onclick={{genNewPassword.copyPassword("password3")}}>
+                            <span class="btn-content">
+                                Copy
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="gen-pass__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input" name="password"
+                               placeholder="Create password" id="password4" readonly>
+                        <button id="copy-btn4" class="btn" onclick={{genNewPassword.copyPassword("password4")}}>
+                            <span class="btn-content">
+                                Copy
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="gen-pass__form">
+                    <form class="created-password" role="presentation">
+                        <input type="text" class="form-created-password-input"
+                               placeholder="Create password" id="password5" readonly>
+                        <button id="copy-btn5" class="btn" onclick={{genNewPassword.copyPassword("password5")}}>
+                            <span class="btn-content">
+                                Copy
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="gen-pass__btn">
+                    <button id="gen-btn" class="btn" onclick="genNewPassword.refreshGenPassword()">
+                        <span class="btn-content">
+                            Generate
+                        </span>
+                    </button>
+                </div>
+                <div class="gen-pass__strength-wrapper">
+                    <div id="color-identifier" class="gen-pass__strength"></div>
+                </div>
+            </section>
+            <h2 class="page_title">Customize your password</h2>
+            <section class="page__section slide-container">
+                <div class="password-length">
+                    <span>Password Length: </span>
+                    <input value="4" name="length" class="custom-range--number" step="1" id="selectValue"
+                           type="number" min="4" max="24" onchange="genNewPassword.genPassword(value)">
+                </div>
+                <div class="slider-input">
+                    <input type="range" min="4" max="24" value="4" class="slider" id="sliderValue"
+                           onchange="genNewPassword.genPassword(value)">
+                </div>
+                <div class="password-complication">
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="russian-alphabet" type="checkbox"
+                               name="russian-alphabet"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="russian-alphabet">Russian alphabet</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="english-alphabet" type="checkbox"
+                               name="english-alphabet"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="english-alphabet">English alphabet</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="upperCaseValue" type="checkbox" name="upperCaseValue"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="upperCaseValue">Uppercase</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="numbers" type="checkbox" name="numbers"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="numbers">Numbers</label>
+                    </div>
+                    <div class="custom-password">
+                        <input class="custom-password-fill" id="symbols" type="checkbox" name="symbols"
+                               checked onclick="genNewPassword.refreshGenPassword()">
+                        <label for="symbols">Symbols</label>
+                    </div>
+                </div>
+            </section>
+            <div class="myModal" id="myModal" onclick="genNewPassword.hideModal()">
+                <form action="php/send.php" method="post" class="myModalContent" id="myModalContent" target="_blank"
+                      onclick="event.stopPropagation()">
+                    <input type="text" name="email" placeholder="Put your email" required>
+                    <textarea id="comment" name="text" placeholder="Comment" required></textarea>
+                    <button type="submit" class="btn" id="send-btn"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <div class="container">
+        <div class="footer__container">
+            <div class="footer__copyright">
+                <a href="/" class="footer__link">
+                    <img class="rounded-circle" width="30" height="30" src="image/user.png" alt="msn"/>
+                </a>
+                <span class="text-muted">© 2022 Murad Gakhramanov Company, Inc</span>
+            </div>
+            <ul class="footer__list">
+                <li class="footer__list__item">
+                    <a href="https://www.instagram.com/murad.savage" class="footer__link">
+                        <img width="30" height="30" src="image/instagram.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://web.telegram.org/murad_savage" class="footer__link">
+                        <img width="30" height="30" src="image/telegram.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://www.linkedin.com/in/murad-gakhramanov" class="footer__link">
+                        <img width="30" height="30" src="image/linkedin.png" alt="img"/>
+                    </a>
+                </li>
+                <li class="footer__list__item">
+                    <a href="https://github.com/WakeUpMurad" class="footer__link">
+                        <img width="30" height="30" src="image/github.png" alt="img"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script defer src="script/script.js"></script>
+<script defer src="script/passwordGenerator.js"></script>
+</body>
+</html>

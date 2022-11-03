@@ -52,7 +52,7 @@ class MyModal extends Component {
         this.$el.insertAdjacentElement('afterbegin',elem.cloneNode(true));
     }
     removeCopiedPass() {
-       this.$el.removeChild(this.$el.firstChild);
+        this.$el.removeChild(this.$el.firstChild);
     }
     show() {
         this.$el.style.display = 'flex';
@@ -175,7 +175,7 @@ class PasswordGenerator extends Component {
     hideModal() {
         this.myModal.hide();
         this.myModalContent.removeCopiedPass()
-        this.body.$el.classList.remove('_lock');
+        this.body.$el.classList.toggle('_lock');
     }
 }
 
@@ -183,5 +183,3 @@ const genNewPassword = new PasswordGenerator();
 
 const bodyLoad = new PasswordGenerator('body');
 bodyLoad.genPassword();
-
-

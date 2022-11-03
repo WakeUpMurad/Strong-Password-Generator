@@ -3,36 +3,32 @@
 *,
 *::before,
 *::after {
+    font-size: calc(1vw + 0.5rem);
     margin: 0;
     padding: 0;
     user-select: none;
     text-decoration: none;
     list-style: none;
+    outline: none;
     box-sizing: border-box;
     --light-rgb: 250, 150, 0;
     --bg-opacity: 1;
 }
-a,
-a::before,
-a::after {
-    text-decoration: none;
-}
+
 html,
 body {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    min-height: 100vh;
     font-size: 1rem;
     line-height: 1;
     background-color: #f9fafb;
     color: #333;
+    overflow-x: hidden;
 }
 body._lock {
     overflow: hidden;
 }
-.wrapper {
+.container {
     max-width: 1320px;
-    width: 100%;
-    min-height: 100vh;
 }
 
 input {
@@ -43,7 +39,7 @@ input {
     border: none;
     outline: none;
     box-sizing: border-box;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 input::placeholder {
@@ -170,7 +166,7 @@ body._touch .menu__list > li._active .menu__arrow {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 4rem;
     margin-bottom: 1rem;
     padding: 1rem;
 }
@@ -223,7 +219,7 @@ body._touch .menu__list > li._active .menu__arrow {
     justify-content: space-between;
 }
 
-input#password {
+.form-created-password-input {
     font-size: 1.5rem;
 }
 
@@ -392,26 +388,13 @@ input#selectValue {
     background-size: 50% 50%;
 }
 .custom-password-fill:checked+label::before {
-    border-color: #0b76ef;
-    background-color: #0b76ef;
+    border-color: #333;
+    background-color: #333;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
 }
 
-.custom-password-fill:not(:disabled):not(:checked)+label:hover::before {
-    border-color: #b3d7ff;
-}
-
-.custom-password-fill:not(:disabled):active+label::before {
-    background-color: #b3d7ff;
-    border-color: #b3d7ff;
-}
-
 .custom-password-fill:focus+label::before {
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.custom-password-fill:focus:not(:checked)+label::before {
-    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(4, 4, 0, 0.25);
 }
 
 .custom-password-fill:disabled+label::before {
@@ -436,13 +419,25 @@ input#selectValue {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
     background: #FFF;
 }
+.myModalContent > * {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+#comment {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    resize: inherit;
+}
 #send-btn {
     background-image: url("../image/ico/send.png");
+
 }
 
 /*Footer styles*/
@@ -499,19 +494,22 @@ input#selectValue {
 /*Media*/
 
 @media (min-width: 256px) {
-    .wrapper {
+    .container {
         max-width: 248px;
         margin: 0 auto;
+    }
+    .container h1 {
+        font-size: 2rem;
     }
 }
 
 @media (min-width: 375px) {
-    .wrapper {
+    .container {
         max-width: 364px;
     }
 }
 @media (min-width: 576px) {
-    .wrapper {
+    .container {
         max-width: 560px;
     }
     .footer__container {
@@ -527,8 +525,11 @@ input#selectValue {
     }
 }
 @media (min-width: 768px) {
-    .wrapper {
+    .container {
         max-width: 720px;
+    }
+    .container h1 {
+        font-size: 3rem;
     }
     .menu__list {
         display: flex;
@@ -641,20 +642,28 @@ input#selectValue {
 }
 
 @media (min-width: 992px) {
-    .wrapper {
+    .container {
         max-width: 960px;
     }
 }
-
 @media (min-width: 1200px) {
-    .wrapper {
+    .container {
         max-width: 1140px;
     }
 
 }
-
 @media (min-width: 1400px) {
-    .wrapper {
+    *,
+    *:before,
+    *:after {
+        font-size: 1.5rem;
+    }
+    .container {
         max-width: 1320px;
+    }
+}
+@media (min-width: 2500px) {
+    .container {
+        max-width: 2300px;
     }
 }
